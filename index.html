@@ -10,13 +10,32 @@
     <div class="container">
         <header>
             <h1>🎮 Bloxd.io Multi-Account Controller</h1>
-            <p>Control up to 5 accounts simultaneously</p>
+            <p>Control up to 10 accounts simultaneously</p>
         </header>
+
+        <div class="controls-panel">
+            <div class="account-selector">
+                <h2>Select Number of Accounts:</h2>
+                <div class="button-group">
+                    <button class="btn btn-count" onclick="setAccountCount(1)">1</button>
+                    <button class="btn btn-count" onclick="setAccountCount(2)">2</button>
+                    <button class="btn btn-count" onclick="setAccountCount(3)">3</button>
+                    <button class="btn btn-count" onclick="setAccountCount(4)">4</button>
+                    <button class="btn btn-count" onclick="setAccountCount(5)">5</button>
+                    <button class="btn btn-count" onclick="setAccountCount(6)">6</button>
+                    <button class="btn btn-count" onclick="setAccountCount(7)">7</button>
+                    <button class="btn btn-count" onclick="setAccountCount(8)">8</button>
+                    <button class="btn btn-count" onclick="setAccountCount(9)">9</button>
+                    <button class="btn btn-count" onclick="setAccountCount(10)">10</button>
+                </div>
+                <p class="selected-count">Selected: <strong id="count-display">5</strong> accounts</p>
+            </div>
+        </div>
 
         <div class="controls-panel">
             <div class="global-controls">
                 <h2>Global Controls</h2>
-                <button class="btn btn-primary" onclick="openAllWindows()">🪟 Open All 5 Accounts</button>
+                <button class="btn btn-primary" onclick="openAllWindows()">🪟 Open All Accounts</button>
                 <button class="btn btn-success" onclick="reloadAllWindows()">🔄 Reload All</button>
                 <button class="btn btn-danger" onclick="closeAllWindows()">❌ Close All</button>
             </div>
@@ -25,7 +44,8 @@
         <div class="info-panel">
             <h3>📋 Instructions:</h3>
             <ol>
-                <li>Click <strong>"Open All 5 Accounts"</strong> to launch all 5 windows</li>
+                <li>Select how many accounts you want (1-10)</li>
+                <li>Click <strong>"Open All Accounts"</strong> to launch them</li>
                 <li>Windows will open to the lifesteal server</li>
                 <li>Arrange them side-by-side using Windows Snap (drag to screen edges)</li>
                 <li>Use <strong>"Reload All"</strong> to refresh all windows at once</li>
@@ -35,7 +55,7 @@
 
         <div class="status-panel">
             <h3>📊 Status</h3>
-            <p>Windows Opened: <span id="window-count">0</span>/5</p>
+            <p>Windows Opened: <span id="window-count">0</span>/<span id="max-count">5</span></p>
             <div id="window-list"></div>
         </div>
     </div>
