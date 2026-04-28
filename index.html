@@ -16,67 +16,27 @@
         <div class="controls-panel">
             <div class="global-controls">
                 <h2>Global Controls</h2>
-                <button class="btn btn-primary" onclick="reloadAllIframes()">🔄 Reload All</button>
-                <button class="btn btn-secondary" onclick="stopAllIframes()">⏹️ Stop All</button>
-                <button class="btn btn-secondary" onclick="resumeAllIframes()">▶️ Resume All</button>
+                <button class="btn btn-primary" onclick="openAllWindows()">🪟 Open All 5 Accounts</button>
+                <button class="btn btn-success" onclick="reloadAllWindows()">🔄 Reload All</button>
+                <button class="btn btn-danger" onclick="closeAllWindows()">❌ Close All</button>
             </div>
         </div>
 
-        <div class="iframes-grid">
-            <div class="iframe-container" id="container-1">
-                <div class="iframe-header">
-                    <h3>Account 1</h3>
-                    <div class="iframe-controls">
-                        <button class="btn btn-small" onclick="reloadIframe(1)">Reload</button>
-                        <button class="btn btn-small" onclick="toggleIframe(1)">Pause</button>
-                    </div>
-                </div>
-                <iframe id="iframe-1" src="https://www.crazygames.com/game/bloxdhop-io?czy_invite=true&utm_source=invite&g=classic&lobby=%F0%9F%A9%B8%F0%9F%A9%B8lifesteal%F0%9F%98%88" frameborder="0" allowfullscreen></iframe>
-            </div>
+        <div class="info-panel">
+            <h3>📋 Instructions:</h3>
+            <ol>
+                <li>Click <strong>"Open All 5 Accounts"</strong> to launch all 5 windows</li>
+                <li>Windows will open to the lifesteal server</li>
+                <li>Arrange them side-by-side using Windows Snap (drag to screen edges)</li>
+                <li>Use <strong>"Reload All"</strong> to refresh all windows at once</li>
+                <li>Use <strong>"Close All"</strong> to close all windows</li>
+            </ol>
+        </div>
 
-            <div class="iframe-container" id="container-2">
-                <div class="iframe-header">
-                    <h3>Account 2</h3>
-                    <div class="iframe-controls">
-                        <button class="btn btn-small" onclick="reloadIframe(2)">Reload</button>
-                        <button class="btn btn-small" onclick="toggleIframe(2)">Pause</button>
-                    </div>
-                </div>
-                <iframe id="iframe-2" src="https://www.crazygames.com/game/bloxdhop-io?czy_invite=true&utm_source=invite&g=classic&lobby=%F0%9F%A9%B8%F0%9F%A9%B8lifesteal%F0%9F%98%88" frameborder="0" allowfullscreen></iframe>
-            </div>
-
-            <div class="iframe-container" id="container-3">
-                <div class="iframe-header">
-                    <h3>Account 3</h3>
-                    <div class="iframe-controls">
-                        <button class="btn btn-small" onclick="reloadIframe(3)">Reload</button>
-                        <button class="btn btn-small" onclick="toggleIframe(3)">Pause</button>
-                    </div>
-                </div>
-                <iframe id="iframe-3" src="https://www.crazygames.com/game/bloxdhop-io?czy_invite=true&utm_source=invite&g=classic&lobby=%F0%9F%A9%B8%F0%9F%A9%B8lifesteal%F0%9F%98%88" frameborder="0" allowfullscreen></iframe>
-            </div>
-
-            <div class="iframe-container" id="container-4">
-                <div class="iframe-header">
-                    <h3>Account 4</h3>
-                    <div class="iframe-controls">
-                        <button class="btn btn-small" onclick="reloadIframe(4)">Reload</button>
-                        <button class="btn btn-small" onclick="toggleIframe(4)">Pause</button>
-                    </div>
-                </div>
-                <iframe id="iframe-4" src="https://www.crazygames.com/game/bloxdhop-io?czy_invite=true&utm_source=invite&g=classic&lobby=%F0%9F%A9%B8%F0%9F%A9%B8lifesteal%F0%9F%98%88" frameborder="0" allowfullscreen></iframe>
-            </div>
-
-            <div class="iframe-container" id="container-5">
-                <div class="iframe-header">
-                    <h3>Account 5</h3>
-                    <div class="iframe-controls">
-                        <button class="btn btn-small" onclick="reloadIframe(5)">Reload</button>
-                        <button class="btn btn-small" onclick="toggleIframe(5)">Pause</button>
-                    </div>
-                </div>
-                <iframe id="iframe-5" src="https://www.crazygames.com/game/bloxdhop-io?czy_invite=true&utm_source=invite&g=classic&lobby=%F0%9F%A9%B8%F0%9F%A9%B8lifesteal%F0%9F%98%88" frameborder="0" allowfullscreen></iframe>
-            </div>
+        <div class="status-panel">
+            <h3>📊 Status</h3>
+            <p>Windows Opened: <span id="window-count">0</span>/5</p>
+            <div id="window-list"></div>
         </div>
     </div>
 
