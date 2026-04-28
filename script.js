@@ -1,79 +1,65 @@
-// Store pause states for each iframe
-const pausedStates = {
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false
-};
+// Store references to all opened windows
+const openedWindows = {};
+const gameURL = "https://www.crazygames.com/game/bloxdhop-io?czy_invite=true&utm_source=invite&g=classic&lobby=%F0%9F%A9%B8%F0%9F%A9%B8lifesteal%F0%9F%98%88";
 
-// Reload a specific iframe
-function reloadIframe(accountNumber) {
-    const iframe = document.getElementById(`iframe-${accountNumber}`);
-    if (iframe) {
-        iframe.src = iframe.src;
-        console.log(`Reloaded Account ${accountNumber}`);
-    }
-}
-
-// Reload all iframes
-function reloadAllIframes() {
+// Open all 5 windows
+function openAllWindows() {
     for (let i = 1; i <= 5; i++) {
-        reloadIframe(i);
-    }
-    console.log('Reloaded all accounts');
-}
-
-// Toggle pause state for a specific iframe
-function toggleIframe(accountNumber) {
-    const iframe = document.getElementById(`iframe-${accountNumber}`);
-    const button = event.target;
-    
-    if (pausedStates[accountNumber]) {
-        // Resume
-        iframe.classList.remove('paused');
-        pausedStates[accountNumber] = false;
-        button.textContent = 'Pause';
-    } else {
-        // Pause
-        iframe.classList.add('paused');
-        pausedStates[accountNumber] = true;
-        button.textContent = 'Resume';
-    }
-    
-    console.log(`Account ${accountNumber} ${pausedStates[accountNumber] ? 'paused' : 'resumed'}`);
-}
-
-// Stop all iframes
-function stopAllIframes() {
-    for (let i = 1; i <= 5; i++) {
-        const iframe = document.getElementById(`iframe-${i}`);
-        iframe.classList.add('paused');
-        pausedStates[i] = true;
-    }
-    updateAllButtons();
-    console.log('Stopped all accounts');
-}
-
-// Resume all iframes
-function resumeAllIframes() {
-    for (let i = 1; i <= 5; i++) {
-        const iframe = document.getElementById(`iframe-${i}`);
-        iframe.classList.remove('paused');
-        pausedStates[i] = false;
-    }
-    updateAllButtons();
-    console.log('Resumed all accounts');
-}
-
-// Update button text for all iframes
-function updateAllButtons() {
-    for (let i = 1; i <= 5; i++) {
-        const buttons = document.querySelectorAll(`#container-${i} .btn-small`);
-        buttons.forEach(btn => {
-            if (btn.textContent.includes('Pause') || btn.textContent.includes('Resume')) {
-                btn.textContent = pausedStates[i] ? 'Resume' : 'Pause';
+        if (!openedWindows[i] || openedWindows[i].closed) {
+            const windowName = `bloxd-account-${i}`;
+            openedWindows[i] = window.open(gameURL, windowName, "width=800,height=600,left=" + (i * 100) + ",top=" + (i * 50));
+            
+            if (!openedWindows[i]) {
+                alert("Pop-up blocked! Please allow pop-ups for this site.");
+                return;
             }
-        });
+        }
     }
+    updateStatus();
+    console.log("Opened all 5 accounts");
 }
+
+// Reload all open windows
+function reloadAllWindows() {
+    let reloadCount = 0;
+    for (let i = 1; i <= 5; i++) {
+        if (openedWindows[i] && !openedWindows[i].closed) {
+            openedWindows[i].location.reload();
+            reloadCount++;
+        }
+    }
+    console.log(`Reloaded ${reloadCount} account(s)`);
+    alert(`Reloaded ${reloadCount} account window(s)`);
+}
+
+// Close all windows
+function closeAllWindows() {
+    let closedCount = 0;
+    for (let i = 1; i <= 5; i++) {
+        if (openedWindows[i] && !openedWindows[i].closed) {
+            openedWindows[i].close();
+            closedCount++;
+        }
+    }
+    updateStatus();
+    console.log(`Closed ${closedCount} account(s)`);
+}
+
+// Update status display
+function updateStatus() {
+    let openCount = 0;
+    let windowList = "";
+    
+    for (let i = 1; i <= 5; i++) {
+        if (openedWindows[i] && !openedWindows[i].closed) {
+            openCount++;
+            windowList += `<span class="window-item">Account ${i} ✓</span>`;
+        }
+    }
+    
+    document.getElementById("window-count").textContent = openCount;
+    document.getElementById("window-list").innerHTML = windowList || "<em style='color: #999;'>No windows open yet</em>";
+}
+
+// Check window status periodically
+setInterval(updateStatus, 2000);
