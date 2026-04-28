@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloxd.io Multi-Account Controller</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Bloxd.io Multi-Account Controller</h1>
+            <p>Control up to 5 accounts simultaneously</p>
+        </header>
+
+        <div class="controls-panel">
+            <div class="global-controls">
+                <h2>Global Controls</h2>
+                <button class="btn btn-primary" onclick="reloadAllIframes()">🔄 Reload All</button>
+                <button class="btn btn-secondary" onclick="stopAllIframes()">⏹️ Stop All</button>
+                <button class="btn btn-secondary" onclick="resumeAllIframes()">▶️ Resume All</button>
+            </div>
+        </div>
+
+        <div class="iframes-grid">
+            <div class="iframe-container" id="container-1">
+                <div class="iframe-header">
+                    <h3>Account 1</h3>
+                    <div class="iframe-controls">
+                        <button class="btn btn-small" onclick="reloadIframe(1)">Reload</button>
+                        <button class="btn btn-small" onclick="toggleIframe(1)">Pause</button>
+                    </div>
+                </div>
+                <iframe id="iframe-1" src="https://crazygames.com/game/bloxd-io" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="iframe-container" id="container-2">
+                <div class="iframe-header">
+                    <h3>Account 2</h3>
+                    <div class="iframe-controls">
+                        <button class="btn btn-small" onclick="reloadIframe(2)">Reload</button>
+                        <button class="btn btn-small" onclick="toggleIframe(2)">Pause</button>
+                    </div>
+                </div>
+                <iframe id="iframe-2" src="https://crazygames.com/game/bloxd-io" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="iframe-container" id="container-3">
+                <div class="iframe-header">
+                    <h3>Account 3</h3>
+                    <div class="iframe-controls">
+                        <button class="btn btn-small" onclick="reloadIframe(3)">Reload</button>
+                        <button class="btn btn-small" onclick="toggleIframe(3)">Pause</button>
+                    </div>
+                </div>
+                <iframe id="iframe-3" src="https://crazygames.com/game/bloxd-io" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="iframe-container" id="container-4">
+                <div class="iframe-header">
+                    <h3>Account 4</h3>
+                    <div class="iframe-controls">
+                        <button class="btn btn-small" onclick="reloadIframe(4)">Reload</button>
+                        <button class="btn btn-small" onclick="toggleIframe(4)">Pause</button>
+                    </div>
+                </div>
+                <iframe id="iframe-4" src="https://crazygames.com/game/bloxd-io" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="iframe-container" id="container-5">
+                <div class="iframe-header">
+                    <h3>Account 5</h3>
+                    <div class="iframe-controls">
+                        <button class="btn btn-small" onclick="reloadIframe(5)">Reload</button>
+                        <button class="btn btn-small" onclick="toggleIframe(5)">Pause</button>
+                    </div>
+                </div>
+                <iframe id="iframe-5" src="https://crazygames.com/game/bloxd-io" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
